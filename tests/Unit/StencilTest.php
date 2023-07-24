@@ -131,7 +131,6 @@ test('set spaces for indent', function() {
     )
         ->toBe("  test\n");
 
-
     expect(
         invade(Stencil::make()
             ->spacesPerIndent(-1)

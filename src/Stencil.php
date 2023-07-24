@@ -2,10 +2,9 @@
 
 namespace CodeStencil;
 
-
+use function CodeStencil\Utility\array_flatten;
 use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
-use function CodeStencil\Utility\array_flatten;
 
 class Stencil
 {
@@ -17,7 +16,7 @@ class Stencil
 
     protected string $content = '';
 
-    protected int $indentLevel = 0;
+    protected int $indentLevel          = 0;
     protected int $spacesPerIndentLevel = 4;
 
     protected bool $isDryRun = false;
@@ -77,6 +76,7 @@ class Stencil
     /**
      * @param string|callable(static $stencil, mixed ...$args): mixed $code
      * @param int                                                     $indentLevel
+     *
      * @return $this
      */
     public function indented(string|callable $code, int $indentLevel = 1): static
@@ -144,11 +144,12 @@ class Stencil
      * @param iterable                                         $items
      * @param callable(static $stencil, mixed ...$args): mixed $handler
      * @param                                                  ...$args
+     *
      * @return $this
      */
     public function foreach(iterable $items, callable $handler, ...$args): static
     {
-        foreach($items as $item) {
+        foreach ($items as $item) {
             $handler($this, $item, ...$args);
         }
 
@@ -158,6 +159,7 @@ class Stencil
     /**
      * @param callable(static $stencil, mixed ...$args): mixed $handler
      * @param                                                  ...$args
+     *
      * @return $this
      */
     public function call(callable $handler, ...$args): static
@@ -170,7 +172,7 @@ class Stencil
     public function variable(string|array $name, string $value = ''): static
     {
         if (is_array($name)) {
-            foreach($name as $key => $value) {
+            foreach ($name as $key => $value) {
                 $this->variables[$key] = $value;
             }
         } else {
@@ -183,6 +185,7 @@ class Stencil
     /**
      * @param string                                           $name
      * @param callable(static $stencil, mixed ...$args): mixed $function
+     *
      * @return $this
      */
     public function function(string $name, callable $function): static
@@ -199,7 +202,7 @@ class Stencil
 
         $delimiter = '/';
 
-        foreach($this->variables as $variable => $value) {
+        foreach ($this->variables as $variable => $value) {
             if (str_starts_with($variable, '/') && str_ends_with($variable, '/')) {
                 $patterns[]     = $variable;
                 $replacements[] = $value;
@@ -223,7 +226,7 @@ class Stencil
     {
         preg_match('/%.*?%\(.*?\)/', $content, $functionMatches);
 
-        foreach($functionMatches as $functionCallSignature) {
+        foreach ($functionMatches as $functionCallSignature) {
             preg_match('/(?<=%).*?(?=%)/', $functionCallSignature, $functionNames);
             preg_match('/(?<=\().*?(?=\))/', $functionCallSignature, $args);
 
@@ -238,7 +241,7 @@ class Stencil
 
             $result = [$functionCallSignature];
 
-            foreach(array_reverse($functionNames) as $functionName) {
+            foreach (array_reverse($functionNames) as $functionName) {
                 $result = $this->functions[$functionName](...$args);
 
                 if (!is_array($result)) {

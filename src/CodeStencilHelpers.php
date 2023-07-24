@@ -65,7 +65,7 @@ trait CodeStencilHelpers
 
         $this->line('[');
 
-        foreach($array as $key => $value) {
+        foreach ($array as $key => $value) {
             $keyPart = '';
             if (!is_int($key)) {
                 $keyPart = "'$key' => ";
@@ -83,7 +83,7 @@ trait CodeStencilHelpers
                 $this->withoutNewline()
                     ->indent()
                     ->array($value)
-                    ->append(",")
+                    ->append(',')
                     ->deindent();
             }
         }
@@ -114,6 +114,7 @@ trait CodeStencilHelpers
      * @param string                                           $statement
      * @param callable(static $stencil, mixed ...$args): mixed $callable
      * @param                                                  ...$args
+     *
      * @return $this
      */
     public function parenStatement(string $statement, callable $callable, ...$args): static
@@ -128,6 +129,7 @@ trait CodeStencilHelpers
      * @param string                                           $statement
      * @param callable(static $stencil, mixed ...$args): mixed $callable
      * @param                                                  ...$args
+     *
      * @return $this
      */
     public function squareStatement(string $statement, callable $callable, ...$args): static
@@ -142,6 +144,7 @@ trait CodeStencilHelpers
      * @param string                                           $statement
      * @param callable(static $stencil, mixed ...$args): mixed $callable
      * @param                                                  ...$args
+     *
      * @return $this
      */
     public function curlyStatement(string $statement, callable $callable, ...$args): static
@@ -156,6 +159,7 @@ trait CodeStencilHelpers
      * @param string                                           $statement
      * @param callable(static $stencil, mixed ...$args): mixed $callable
      * @param                                                  ...$args
+     *
      * @return $this
      */
     public function angleStatement(string $statement, callable $callable, ...$args): static
@@ -170,6 +174,7 @@ trait CodeStencilHelpers
      * @param string                                           $statement
      * @param callable(static $stencil, mixed ...$args): mixed $callable
      * @param                                                  ...$args
+     *
      * @return $this
      */
     public function angleClosedStatement(string $statement, callable $callable, ...$args): static
