@@ -140,14 +140,17 @@ test('set spaces for indent', function() {
 });
 
 test('save', function() {
-    $path = sys_get_temp_dir() . '/save';
+    $tempDir = sys_get_temp_dir();
+    $path    = $tempDir . '/% replace_me %(save)';
     Stencil::make()
         ->php()
+        ->variable('replace_me', 'functionCall')
+        ->function('functionCall', fn($x) => $x)
         ->line('test')
         ->save($path);
 
-    expect($path)->toBeReadableFile()
-        ->and(file_get_contents($path))->toBe("<?php\n\ntest\n");
+    expect($tempDir . '/save')->toBeReadableFile()
+        ->and(file_get_contents($tempDir . '/save'))->toBe("<?php\n\ntest\n");
 });
 
 test('dry run save', function() {
@@ -248,9 +251,11 @@ test('use variables', function() {
         Stencil::make()
             ->variable('test', 'value')
             ->line('test')
+            ->line('test')
+            ->line('test')
             ->__toString()
     )
-        ->toBe("value\n");
+        ->toBe("value\nvalue\nvalue\n");
 
     expect(
         Stencil::make()
@@ -286,9 +291,11 @@ test('use function', function() {
         Stencil::make()
             ->function('ucfirst', fn(string $v) => ucfirst($v))
             ->line('% ucfirst %(test)')
+            ->line('% ucfirst %(test)')
+            ->line('% ucfirst %(test)')
             ->__toString()
     )
-        ->toBe("Test\n");
+        ->toBe("Test\nTest\nTest\n");
 
     expect(
         Stencil::make()
@@ -298,6 +305,15 @@ test('use function', function() {
             ->__toString()
     )
         ->toBe("Est\n", 'chained function calls with arguments');
+
+    expect(
+        Stencil::make()
+            ->variable('_Name_', '% ucfirst %(_name_)')
+            ->variable('_name_', 'myName')
+            ->function('ucfirst', fn($val) => ucfirst($val))
+            ->line('_Name_')
+            ->__toString()
+    )->toBe("MyName\n", 'Expected variables to be able to define functions');
 });
 
 test('merge', function() {

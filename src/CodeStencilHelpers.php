@@ -2,6 +2,8 @@
 
 namespace CodeStencil;
 
+use function CodeStencil\Utility\array_flatten;
+
 trait CodeStencilHelpers
 {
     public function comment(string $comment): static
@@ -49,10 +51,24 @@ trait CodeStencilHelpers
         $lines = array_filter([
             $hasSummary || $hasDescription || $hasTags ? '/**' : null,
             ...array_map(fn($s) => " * $s", $summary),
-            $hasSummary && $hasDescription ? ' *' : null,
+            $hasSummary && ($hasDescription || $hasTags) ? ' *' : null,
             ...array_map(fn($d) => " * $d", $description),
             $hasDescription > 0 && $hasTags ? ' *' : null,
-            ...array_map(fn($key) => " * @$key $tags[$key]", array_keys($tags)),
+            ...array_flatten(array_map(function($key) use ($tags) {
+                $tagLines = [];
+
+                if (is_array($tags[$key])) {
+                    $tagValues = $tags[$key];
+                } else {
+                    $tagValues = [$tags[$key]];
+                }
+
+                foreach ($tagValues as $tagVal) {
+                    $tagLines[] = " * @$key $tagVal";
+                }
+
+                return $tagLines;
+            }, array_keys($tags))),
             $hasSummary || $hasDescription || $hasTags ? ' */' : null,
         ]);
 

@@ -121,16 +121,14 @@ class Stencil
             return;
         }
 
+        $path = $this->substituteVariables($path);
+        $path = $this->applyFunctions($path);
+
         if (!file_exists(dirname($path))) {
             mkdir(dirname($path), 0777, true);
         }
 
         file_put_contents($path, $this->__toString());
-    }
-
-    public function get(): string
-    {
-        return $this->content;
     }
 
     public function dryRun(bool $dryRun = true): static
@@ -209,7 +207,7 @@ class Stencil
 
             } else {
                 $patterns[]     = "{$delimiter}{$variable}{$delimiter}";
-                $replacements[] = preg_quote($value, $delimiter);
+                $replacements[] = $value;
             }
         }
 
@@ -224,9 +222,9 @@ class Stencil
 
     protected function applyFunctions(string $content): string
     {
-        preg_match('/%.*?%\(.*?\)/', $content, $functionMatches);
+        preg_match_all('/%.*?% *\(.*?\)/', $content, $functionMatches);
 
-        foreach ($functionMatches as $functionCallSignature) {
+        foreach ($functionMatches[0] as $functionCallSignature) {
             preg_match('/(?<=%).*?(?=%)/', $functionCallSignature, $functionNames);
             preg_match('/(?<=\().*?(?=\))/', $functionCallSignature, $args);
 

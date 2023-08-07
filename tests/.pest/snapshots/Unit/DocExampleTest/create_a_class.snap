@@ -1,0 +1,21 @@
+<?php
+
+declare(strict_types = 1);
+
+namespace App/Models;
+
+use OtherClass;
+
+class MyClass{
+private OtherClass $otherClass;
+
+/**
+ * Create a new instance of MyClass
+ *
+ * @param OtherClass $class
+ * @param bool $options
+ */
+function __construct(OtherClass $class, bool $options = false){
+$this->otherClass = $class;
+}
+}

@@ -1,0 +1,7 @@
+<?php
+
+class MyClass{
+private string id;
+private string name;
+private string startAt;
+}

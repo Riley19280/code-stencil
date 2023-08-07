@@ -1,0 +1,12 @@
+ [
+ 'noKey1',
+ 'noKey2',
+ 'key1' => 'value1',
+ 'key2' => 'value2',
+ 'nested1' =>   [
+  'nested2' =>    [
+   'nested3' => 'nestedvalue',
+  ],
+ ],
+ ]
+ same indent

@@ -2,9 +2,9 @@
 
 namespace CodeStencil\Tests;
 
-use Orchestra\Testbench\TestCase as Orchestra;
+use PHPUnit\Framework\TestCase as BaseTestCase;
 
-abstract class TestCase extends Orchestra
+abstract class TestCase extends BaseTestCase
 {
     //
 }

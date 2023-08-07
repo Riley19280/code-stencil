@@ -78,9 +78,19 @@ test('phpdoc', function() {
         Stencil::make()
             ->spacesPerIndent(1)
             ->indent()
-            ->phpdoc('summary', 'description', ['tag' => 'value'])
+            ->phpdoc(tags: [
+                'tag' => ['value', 'value'],
+            ])
             ->__toString()
-    )->toBe(" /**\n  * summary\n  *\n  * description\n  *\n  * @tag value\n  */\n", 'expected all attributes to be handled');
+    )->toBe(" /**\n  * @tag value\n  * @tag value\n  */\n");
+
+    expect(
+        Stencil::make()
+            ->spacesPerIndent(1)
+            ->indent()
+            ->phpdoc('summary', null, ['tag' => 'value'])
+            ->__toString()
+    )->toMatchSnapshot();
 });
 
 test('array', function() {
@@ -101,7 +111,7 @@ test('array', function() {
             ])
             ->line('same indent')
             ->__toString()
-    )->toBe(" [\n 'noKey1',\n 'noKey2',\n 'key1' => 'value1',\n 'key2' => 'value2',\n 'nested1' =>   [\n  'nested2' =>    [\n   'nested3' => 'nestedvalue',\n  ],\n ],\n ]\n same indent\n");
+    )->toMatchSnapshot();
 });
 
 test('wrap statement', function() {

@@ -12,7 +12,6 @@
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^7",
         "nunomaduro/larastan": "^2.0.1",
-        "orchestra/testbench": "^8.0",
         "pestphp/pest": "^2.9",
         "pestphp/pest-plugin-arch": "^2.0",
         "phpstan/extension-installer": "^1.1",
