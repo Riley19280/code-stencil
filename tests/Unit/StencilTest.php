@@ -3,6 +3,7 @@
 /** @noinspection MultipleExpectChainableInspection */
 
 use CodeStencil\Stencil;
+use CodeStencil\StencilFormatter;
 
 //describe('content utility', function() {
 
@@ -143,6 +144,45 @@ test('save', function() {
     $tempDir = sys_get_temp_dir();
     $path    = $tempDir . '/% replace_me %(save)';
     Stencil::make()
+        ->php()
+        ->disableFormat()
+        ->variable('replace_me', 'functionCall')
+        ->function('functionCall', fn($x) => $x)
+        ->line('test')
+        ->save($path);
+
+    expect($tempDir . '/save')->toBeReadableFile()
+        ->and(file_get_contents($tempDir . '/save'))->toBe("<?php\n\ntest\n");
+});
+
+test('custom formatter', function() {
+    $tempDir = sys_get_temp_dir();
+    $path    = $tempDir . '/% replace_me %(save)';
+    Stencil::make()
+        ->php()
+        ->setFormatter(fn(string $path) => file_put_contents($tempDir . '/save', 'formatted'))
+        ->variable('replace_me', 'functionCall')
+        ->function('functionCall', fn($x) => $x)
+        ->line('test')
+        ->save($path);
+
+    expect($tempDir . '/save')->toBeReadableFile()
+        ->and(file_get_contents($tempDir . '/save'))->toBe('formatted');
+});
+
+test('formatter', function() {
+    $tempDir = sys_get_temp_dir();
+
+    $formatter = Mockery::mock(StencilFormatter::class)->makePartial();
+    $formatter->shouldAllowMockingProtectedMethods();
+    $formatter->shouldReceive('executeExternalFormatter')->once();
+
+    $stencil = Mockery::mock(Stencil::class)->makePartial();
+    $stencil->shouldAllowMockingProtectedMethods();
+    $stencil->shouldReceive('getStencilFormatter')->andReturn($formatter)->once();
+
+    $path    = $tempDir . '/% replace_me %(save)';
+    $stencil
         ->php()
         ->variable('replace_me', 'functionCall')
         ->function('functionCall', fn($x) => $x)

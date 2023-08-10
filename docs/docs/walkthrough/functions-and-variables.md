@@ -92,9 +92,7 @@ TEST
 A function definition within a stencil looks like this `% <name of function> %(<arguments>)`.
 The `<arguments>` can be a comma separated list of values to pass to the funciton
 
-<FeatureHeader anchor="function-chaining">
-<span style={{ fontSize: '16px'}}>Function Chaining</span>
-</FeatureHeader>
+### Function Chaining
 
 Function calls can also be chained, by providing multiple function names between the `%` signs.
 These functions are evaluated from right to left, and the result of the previous function will be passed as the argument to the next.

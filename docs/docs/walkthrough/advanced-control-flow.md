@@ -3,13 +3,8 @@ title: Advanced Control Flow
 sidebar_position: 8
 ---
 
-### test
-
-<FeatureHeader anchor="When" title>
-When
-</FeatureHeader>
-The <strong><code>when</code></strong> method easily allow for conditional branching within a Stencil definition
-
+### When
+The **`when`** method easily allow for conditional branching within a Stencil definition
 ```php
 $myCondition = false;
 
@@ -20,12 +15,8 @@ Stencil::make()
 The first argument is your condition, and the second is what you would like to do in that condition
 
 
-<FeatureHeader anchor="foreach" title>
-Foreach
-</FeatureHeader>
-
-The <strong><code>foreach</code></strong> method allows for running code for each item in an array
-
+### Foreach
+The **`foreach`** method allows for running code for each item in an array
 The following will generate a variable and getter function for every item passed to the `foreach` function.
 
 ```php
@@ -36,11 +27,8 @@ Stencil::make()
 })
 ```
 
-<FeatureHeader anchor="call" title>
-Call
-</FeatureHeader>
-The <strong><code>call</code></strong> method allows you to call any other method or closure, passing in the current code stencil.
-This allows you to make stencils composable, and easily break up complex logic.
+### Call
+The **`call`** method allows you to call any other method or closure, passing in the current code stencil.
 
 ```php
 Stencil::make()
@@ -56,9 +44,8 @@ Stencil::make()
 )
 ```
 
-<FeatureHeader anchor="merge">
-The <strong><code>merge</code></strong> allows for the combining of many Stencils
-</FeatureHeader>
+### Merge
+The **`merge`** allows for the combining of many Stencils
 
 When merging, all the defined variables, functions, and uses will also be merged.
 
@@ -81,6 +68,6 @@ From Stencil B
 "
 ```
 
-<FeatureHeader anchor="Macros">
-The <strong><code>Macros</code></strong> method is an alias for a php shebang line
-</FeatureHeader>
+### Macro
+The **`Macro`** method allows you to add custom functions to the `CodeStencil` class. 
+You can read more about macros [here](https://medium.com/@sirajul.anik/laravel-macroable-understanding-macros-and-mixin-1c3aaa9f8ba8)

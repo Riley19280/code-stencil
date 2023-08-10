@@ -5,9 +5,8 @@ sidebar_position: 3
 
 <a class="anchor" name="line"></a>
 
-<FeatureHeader anchor="line">
-The <strong><code>line</code></strong> method will add content to your stencil on a new line
-</FeatureHeader>
+### Line
+The **`line`** method will add content to your stencil on a new line
 
 ```php
 Stencil::make()
@@ -19,9 +18,8 @@ World!
 "
 ```
 
-<FeatureHeader anchor="append">
-The <strong><code>append</code></strong> method will append content to the stencil on the last line
-</FeatureHeader>
+### Append
+The **`append`** method will append content to the stencil on the last line
 
 ```php
 Stencil::make()
@@ -32,9 +30,8 @@ Stencil::make()
 "
 ```
 
-<FeatureHeader anchor="newline">
+### Newline
 The <strong><code>newline</code></strong> method will add empty line(s) to the stencil
-</FeatureHeader>
 
 ```php
 Stencil::make()
@@ -48,10 +45,9 @@ World!
 "
 ```
 
-<FeatureHeader anchor="withoutNewline">
-The <strong><code>withoutNewline</code></strong> method will remove the last newline, allowing you to continue your stencil on the same line.
+### WithoutNewline
+The **`withoutNewline`** method will remove the last newline, allowing you to continue your stencil on the same line.
 This is useful when working with braces.
-</FeatureHeader>
 
 ```php
 Stencil::make()
@@ -71,9 +67,9 @@ The following functions can be used anywhere within the stencil, and will be ins
 
 :::
 
-<FeatureHeader anchor="shebang">
-The <strong><code>shebang</code></strong> method will add a shebang line to the stencil
-</FeatureHeader>
+
+### Shebang
+The **`shebang`** method will add a shebang line to the stencil
 
 ```php
 Stencil::make()
@@ -85,9 +81,8 @@ Hello
 "
 ```
 
-<FeatureHeader anchor="php">
-The <strong><code>php</code></strong> method is an alias for a php shebang line
-</FeatureHeader>
+### Php
+The **`php`** method is an alias for a php shebang line
 
 ```php
 Stencil::make()
@@ -102,9 +97,8 @@ Hello
 "
 ```
 
-<FeatureHeader anchor="strictTypes">
-The <strong><code>strictTypes</code></strong> method will add a strict types declaration to the file
-</FeatureHeader>
+### StrictTypes
+The **`strictTypes`** method will add a strict types declaration to the file
 
 ```php
 Stencil::make()
@@ -114,9 +108,8 @@ Stencil::make()
 "
 ```
 
-<FeatureHeader anchor="namespace">
-The <strong><code>namespace</code></strong> method will set the namespace for the php file
-</FeatureHeader>
+### Namespace
+The **`namespace`** method will set the namespace for the php file
 
 ```php
 Stencil::make()
@@ -126,9 +119,8 @@ Stencil::make()
 "
 ```
 
-<FeatureHeader anchor="use">
-The <strong><code>use</code></strong> method will set the namespace for the php file.
-</FeatureHeader>
+### Use
+The **`use`** method will set the namespace for the php file.
 
 Uses can be added from anywhere in the stencil, loops, conditionals, function calls, or anywhere else, 
 and will always show up in the proper location in the stencil

@@ -2,6 +2,7 @@
 
 namespace CodeStencil;
 
+use Closure;
 use function CodeStencil\Utility\array_flatten;
 use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
@@ -23,6 +24,9 @@ class Stencil
 
     protected array $variables = [];
     protected array $functions = [];
+
+    protected bool $formattingEnabled = true;
+    protected ?Closure $formatter     = null;
 
     public function __construct()
     {
@@ -129,6 +133,22 @@ class Stencil
         }
 
         file_put_contents($path, $this->__toString());
+
+        $this->format($path);
+    }
+
+    public function disableFormat(bool $enabled = false): static
+    {
+        $this->formattingEnabled = $enabled;
+
+        return $this;
+    }
+
+    public function setFormatter(callable $formatter): static
+    {
+        $this->formatter = $formatter(...);
+
+        return $this;
     }
 
     public function dryRun(bool $dryRun = true): static
@@ -272,6 +292,25 @@ class Stencil
         $this->classUses   = [...$this->classUses, ...$stencil->classUses];
 
         return $this;
+    }
+
+    protected function format(string $path): void
+    {
+        if ($this->isDryRun) {
+            return;
+        }
+
+        $this->getStencilFormatter()($path);
+    }
+
+    protected function getStencilFormatter(): callable
+    {
+        if ($this->formatter) {
+            return $this->formatter;
+        } else {
+            return new StencilFormatter();
+
+        }
     }
 
     public function __toString(): string

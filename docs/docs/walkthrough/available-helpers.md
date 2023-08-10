@@ -5,9 +5,8 @@ sidebar_position: 7
 
 Out of the box Code Stencil provides many utility functions to make code generation a breeze!
 
-<FeatureHeader anchor="comment">
-The <strong><code>comment</code></strong> method adds a simple comment
-</FeatureHeader>
+### Comment
+The **`comment`** method adds a simple comment
 
 ```php
 Stencil::make()
@@ -17,9 +16,8 @@ Stencil::make()
 "
 ```
 
-<FeatureHeader anchor="multilineComment">
-The <strong><code>multilineComment</code></strong> method adds a comment with line breaks included
-</FeatureHeader>
+### MultilineComment
+The **`multilineComment`** method adds a comment with line breaks included
 
 ```php
 Stencil::make()
@@ -33,9 +31,8 @@ Stencil::make()
 "
 ```
 
-<FeatureHeader anchor="phpdoc">
-The <strong><code>phpdoc</code></strong> method can generate a php docblock for you
-</FeatureHeader>
+### Phpdoc
+The **`phpdoc`** method can generate a php docblock for you
 
 ```php
 Stencil::make()
@@ -60,9 +57,8 @@ Stencil::make()
 '
 ```
 
-<FeatureHeader anchor="array">
-The <strong><code>array</code></strong> method will print the passed array into the Stencil
-</FeatureHeader>
+### Array
+The **`array`** method will print the passed array into the Stencil
 
 ```php
 Stencil::make()
@@ -86,9 +82,8 @@ Stencil::make()
 ```
 
 
-<FeatureHeader anchor="semicolon">
-The <strong><code>semicolon</code></strong> method adds a semicolon
-</FeatureHeader>
+### Semicolon
+The **`semicolon`** method adds a semicolon
 
 ```php
 Stencil::make()

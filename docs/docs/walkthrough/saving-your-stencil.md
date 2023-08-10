@@ -3,9 +3,8 @@ title: Saving your stencil
 sidebar_position: 5
 ---
 
-<FeatureHeader anchor="save">
-The <strong><code>save</code></strong> method will save your code stencil to a file
-</FeatureHeader>
+### Save
+The **`save`** method will save your code stencil to a file
 
 If the provided path does not exist, then it will be created.
 
@@ -16,9 +15,8 @@ Stencil::make()
 ->save('/my/path/file.txt')
 ```
 
-<FeatureHeader anchor="dryRun">
-The <strong><code>dryRun</code></strong> method, indicates that the file should not be saved to the disk. 
-</FeatureHeader>
+### DryRun
+The **`dryRun`** method, indicates that the file should not be saved to the disk.
 
 ```php
 Stencil::make()
@@ -36,9 +34,8 @@ By default, if you have [PHP-CS-Fixer](https://github.com/PHP-CS-Fixer/PHP-CS-Fi
 installed in your project, your stencil will be formatted using that. 
 Otherwise, your stencil will not be formatted, unless you provided a custom formatter via the [setFormatter](#setFormatter) option.
 
-<FeatureHeader anchor="setFormatter">
-The <strong><code>setFormatter</code></strong> method can be used to override the formatter autodiscovery process
-</FeatureHeader>
+### SetFormatter
+The **`setFormatter`** method can be used to override the formatter autodiscovery process
 
 ```php
 Stencil::make()
@@ -48,9 +45,8 @@ Stencil::make()
 ->save('/my/path/file.txt')
 ```
 
-<FeatureHeader anchor="disableFormat">
-The <strong><code>disableFormat</code></strong> method will disable external formatting altogether.
-</FeatureHeader>
+### DisableFormat
+The **`disableFormat`** method will disable external formatting altogether.
 
 ```php
 Stencil::make()
@@ -58,9 +54,8 @@ Stencil::make()
 ->save('/my/path/file.txt')
 ```
 
-<FeatureHeader anchor="toString">
-The <strong><code>__toString</code></strong> method will return your fully rendered code stencil
-</FeatureHeader>
+### ToString
+The **`__toString`** method will return your fully rendered code stencil
 
 ```php
 $stencilContent = Stencil::make()
