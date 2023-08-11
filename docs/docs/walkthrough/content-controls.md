@@ -24,7 +24,7 @@ The **`append`** method will append content to the stencil on the last line
 ```php
 Stencil::make()
 ->line('Hello')
-->line(' World!')
+->append(' World!')
 // --- results in --- // 
 "Hello World!
 "
@@ -37,7 +37,7 @@ The <strong><code>newline</code></strong> method will add empty line(s) to the s
 Stencil::make()
 ->line('Hello')
 ->newline()
-->line(' World!')
+->line('World!')
 // --- results in --- // 
 "Hello
 
@@ -61,7 +61,7 @@ Stencil::make()
 
 ---
 
-:::note
+:::info
 
 The following functions can be used anywhere within the stencil, and will be inserted in the proper location when your stencil is rendered
 
@@ -120,7 +120,7 @@ Stencil::make()
 ```
 
 ### Use
-The **`use`** method will set the namespace for the php file.
+The **`use`** method add a use statement for the class at the top of the file.
 
 Uses can be added from anywhere in the stencil, loops, conditionals, function calls, or anywhere else, 
 and will always show up in the proper location in the stencil

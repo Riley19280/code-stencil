@@ -1,5 +1,5 @@
 ---
-title: Saving your stencil
+title: Saving and Formatting
 sidebar_position: 5
 ---
 
@@ -11,7 +11,6 @@ If the provided path does not exist, then it will be created.
 ```php
 Stencil::make()
 ->line('Hello World!')
-->line('World!')
 ->save('/my/path/file.txt')
 ```
 
@@ -29,10 +28,14 @@ Stencil::make()
 
 ---
 
+:::info
+
 Code Stencils provide a variety of ways to format your code after its generated. 
 By default, if you have [PHP-CS-Fixer](https://github.com/PHP-CS-Fixer/PHP-CS-Fixer), [Pint](https://laravel.com/docs/10.x/pint), or [StyleCI](https://styleci.io/)
 installed in your project, your stencil will be formatted using that. 
 Otherwise, your stencil will not be formatted, unless you provided a custom formatter via the [setFormatter](#setFormatter) option.
+
+:::
 
 ### SetFormatter
 The **`setFormatter`** method can be used to override the formatter autodiscovery process

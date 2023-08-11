@@ -43,7 +43,7 @@ World
 ```
 
 ### SetIndentLevel
-The **`setIndentLevel`** method is an alias for a php shebang line
+The **`setIndentLevel`** method will set the current indent level to a specific value
 
 ```php
 Stencil::make()
@@ -57,7 +57,7 @@ Stencil::make()
 ```
 
 ### SpacesPerIndent
-The **`spacesPerIndent`** changes the number of spaces when the <code>indent</code> method is used
+The **`spacesPerIndent`** changes the number of spaces when the `indent` or `indented` method is used
 
 ```php
 Stencil::make()

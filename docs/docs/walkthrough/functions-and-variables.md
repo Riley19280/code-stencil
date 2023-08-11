@@ -8,7 +8,7 @@ Functions and Variables can be leveraged to make those situations easy.
 
 ### Variables
 
-Variables are defined as such:
+Variables are defined using the `variable` method:
 
 ```php
 Stencil::make()
