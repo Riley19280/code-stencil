@@ -16,6 +16,9 @@ const config = {
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
 
+  deploymentBranch: 'gh-pages',
+  trailingSlash: false,
+
   organizationName: 'riley19280', // Usually your GitHub org/user name.
   projectName: 'code-stencil', // Usually your repo name.
 
@@ -76,8 +79,8 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
+                label: 'walkthrough',
+                to: '/docs/category/walkthrough',
               },
             ],
           },

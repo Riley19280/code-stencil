@@ -28,7 +28,7 @@ Tada!
 ```
 
 ### Indented
-The **`indented`** will indent the content passed, and then return the indent level to the previous level
+The **`indented`** method will indent the content passed, and then return the indent level to the previous level
 
 ```php
 Stencil::make()

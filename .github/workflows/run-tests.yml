@@ -6,7 +6,42 @@ on:
   pull_request:
     branches: [main]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref_name }}
+  cancel-in-progress: true
+
 jobs:
+  test-docs-build:
+    name: Test Docs Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          filters: |
+            docs:
+              - 'docs/**'
+
+      - if: steps.changes.outputs.docs == 'true'
+        uses: actions/setup-node@v3
+        with:
+          cache-dependency-path: ./docs/yarn.lock
+          node-version: 18
+          cache: yarn
+
+      - name: Install dependencies
+        if: steps.changes.outputs.docs == 'true'
+        working-directory: ./docs
+        run: yarn install --frozen-lockfile
+
+      - name: Build website
+        if: steps.changes.outputs.docs == 'true'
+        working-directory: ./docs
+        run: yarn build
+
   test:
     runs-on: ${{ matrix.os }}
     strategy:
