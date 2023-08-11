@@ -31,6 +31,7 @@ trait LaravelStringHelpers
 
     protected function getLaravelStringMethods(): array
     {
+        // @phpstan-ignore-next-line
         return array_filter(get_class_methods(new \Illuminate\Support\Str()), function($method) {
             return !str_starts_with($method, '__') &&
                 !str_starts_with($method, 'when') &&

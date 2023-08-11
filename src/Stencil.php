@@ -81,10 +81,11 @@ class Stencil
      * @param string|callable(static $stencil, mixed ...$args): mixed $code
      * @param int                                                     $indentLevel
      *
-     * @return $this
+     * @return static
      */
     public function indented(string|callable $code, int $indentLevel = 1): static
     {
+        // @phpstan-ignore-next-line
         return $this
             ->indent($indentLevel)
             ->when(is_string($code), fn(self $s) => $s->line($code), fn(self $s) => $s->call($code))
