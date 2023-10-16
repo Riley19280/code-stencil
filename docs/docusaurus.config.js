@@ -51,12 +51,12 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
-      image: 'img/docusaurus-social-card.jpg',
+      image: 'img/splash.png',
       navbar: {
         title: 'Code Stencil',
         logo: {
           alt: 'Code Stencil Logo',
-          src: 'img/logo.svg',
+          src: 'img/icon.png',
         },
         items: [
           {
@@ -79,7 +79,7 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'walkthrough',
+                label: 'Walkthrough',
                 to: '/docs/category/walkthrough',
               },
             ],

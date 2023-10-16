@@ -1,3 +1,14 @@
+
+<p align="center">
+    <img src="https://raw.githubusercontent.com/Riley19280/code-stencil/main/docs/static/img/splash.png" width="600" alt="Code Stencil">
+    <p align="center">
+        <a href="https://github.com/riley19280/code-stencil/actions"><img alt="GitHub Workflow Status (master)" src="https://img.shields.io/github/actions/workflow/status/riley19280/code-stencil/run-tests.yml?branch=main&label=Tests"></a>
+        <a href="https://packagist.org/packages/code-stencil/code-stencil"><img alt="Total Downloads" src="https://img.shields.io/packagist/dt/code-stencil/code-stencil"></a>
+        <a href="https://packagist.org/packages/code-stencil/code-stencil"><img alt="Latest Version" src="https://img.shields.io/packagist/v/code-stencil/code-stencil"></a>
+        <a href="https://packagist.org/packages/code-stencil/code-stencil"><img alt="License" src="https://img.shields.io/packagist/l/code-stencil/code-stencil"></a>
+    </p>
+</p>
+
 # Introduction
 
 Code Stencil provides an elegant, easy to read pattern that is great for generating stub files,
