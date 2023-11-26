@@ -14,5 +14,5 @@ Code Stencil requires PHP **8.1+**
 Code Stencil can be installed via composer using the following command
 
 ```bash
-composer require riley19280/code-stencil
+composer require code-stencil/code-stencil
 ```
