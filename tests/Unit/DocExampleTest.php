@@ -48,3 +48,17 @@ test('foreach and functions', function() {
         //        ->save('__class__.php')
     )->toMatchSnapshot();
 });
+
+test('laravel controller stub', function() {
+    expect(
+        Stencil::make()
+            ->php()
+            ->variable('__namespace__', 'namespace')
+            ->variable('__rootNamespace__', 'rootNamespace')
+            ->namespace('__namespace__')
+            ->use('__rootNamespace__\Http\Controllers\Controller')
+            ->use('Illuminate\Http\Request')
+            ->curlyStatement('class __class__ extends Controller', function() {
+            })
+    )->toMatchSnapshot();
+});
