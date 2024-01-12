@@ -101,3 +101,30 @@ class MyClass {
 </details>
 
 This example is basic, but there's no limit to the complexity of code you can generate!
+
+
+## For Laravel
+
+Native integration for stub files in Laravel is also supported. You'll be able to create stub files for use with existing laravel commands. 
+This means that you can return a `Stencil` directly within a custom stub file, and it will then be processed just like any other stencil. 
+
+If you don't already have the stubs published in your project, you can run `php artisan stub:publish`.
+
+Then within any of these files you can create a stencil like so.
+
+```php
+<?php
+
+use CodeStencil\Stencil;
+
+return Stencil::make()
+    ->php()
+    ->namespace('App\Models')
+    ->use('Illuminate\Database\Eloquent\Factories\HasFactory')
+    ->use('Illuminate\Database\Eloquent\Model')
+    ->curlyStatement('class i_name extends Model', fn(Stencil $s) => $s
+        ->line('use HasFactory;')
+    );
+```
+
+If you have a formatter installed, such as Pint, PHP CS Fixer, or StyleCI, your stencil will be formatted as well!
