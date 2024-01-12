@@ -50,11 +50,11 @@ class LaravelCodeStencilServiceProvider extends ServiceProvider
 
                 $prefixedArgs = [];
 
-                foreach($availableArgs as $arg => $val) {
+                foreach ($availableArgs as $arg => $val) {
                     $prefixedArgs['i_' . $arg] = $val;
                 }
 
-                foreach($newFiles as $newFile) {
+                foreach ($newFiles as $newFile) {
                     (new StencilFileProcessor($newFile, $prefixedArgs))();
                 }
 
@@ -70,19 +70,19 @@ class LaravelCodeStencilServiceProvider extends ServiceProvider
             if ($file->isDir()) {
                 $baseDirectoryPath = trim(str_replace(base_path(), '', $file->getPathname()), '/');
 
-                foreach(config('code-stencil.ignore.directories') as $dir) {
+                foreach (config('code-stencil.ignore.directories') as $dir) {
                     if ($dir === $baseDirectoryPath) {
                         return false;
                     }
                 }
             } else {
-                foreach(config('code-stencil.ignore.files') as $fileName) {
+                foreach (config('code-stencil.ignore.files') as $fileName) {
                     if ($file->getFilename() === $fileName) {
                         return false;
                     }
                 }
 
-                foreach(config('code-stencil.ignore.patterns') as $pattern) {
+                foreach (config('code-stencil.ignore.patterns') as $pattern) {
                     if (preg_match($pattern, $file->getPath())) {
                         return false;
                     }
@@ -96,7 +96,7 @@ class LaravelCodeStencilServiceProvider extends ServiceProvider
         $rii = new RecursiveIteratorIterator($filterIter);
 
         $files = [];
-        foreach($rii as $file) {
+        foreach ($rii as $file) {
             if (!$file->isDir()) {
                 $files[] = $file->getPathname();
             }

@@ -3,17 +3,18 @@
 namespace CodeStencil;
 
 use Closure;
-use function CodeStencil\Utility\array_flatten;
 use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
+
+use function CodeStencil\Utility\array_flatten;
 
 class Stencil
 {
     use CodeStencilHelpers;
-    use FileHeaderStencil;
-    use Macroable;
     use Conditionable;
+    use FileHeaderStencil;
     use LaravelStringHelpers;
+    use Macroable;
 
     protected string $content = '';
 
