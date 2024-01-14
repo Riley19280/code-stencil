@@ -27,6 +27,27 @@ class StencilFileProcessor
 
         $stencil->variable($this->variables);
 
-        $stencil->save($this->path);
+        $savePath = $this->resolveSavePath($stencil);
+
+        $stencil->save($savePath);
+
+        if ($savePath != $this->path) {
+            unlink($this->path);
+        }
+    }
+
+    private function resolveSavePath(Stencil $stencil): string
+    {
+        $reflectionClass = new \ReflectionClass($stencil);
+        $prop            = $reflectionClass->getProperty('variables');
+        $prop->setAccessible(true);
+
+        $definedVariables = $prop->getValue($stencil);
+
+        if (array_key_exists('overrideStubLocation', $definedVariables)) {
+            return $definedVariables['overrideStubLocation'];
+        }
+
+        return $this->path;
     }
 }
