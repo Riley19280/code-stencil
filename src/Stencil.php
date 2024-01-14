@@ -3,10 +3,9 @@
 namespace CodeStencil;
 
 use Closure;
+use function CodeStencil\Utility\array_flatten;
 use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
-
-use function CodeStencil\Utility\array_flatten;
 
 class Stencil
 {
@@ -299,6 +298,10 @@ class Stencil
     protected function format(string $path): void
     {
         if ($this->isDryRun) {
+            return;
+        }
+
+        if (!$this->formattingEnabled) {
             return;
         }
 

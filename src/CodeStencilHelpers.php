@@ -26,7 +26,7 @@ trait CodeStencilHelpers
         return $this->foreach($lines, fn(self $s, string $line) => $s->line($line));
     }
 
-    public function phpdoc(string|array|null $summary = null, string|array|null $description = null, ?array $tags = null): static
+    public function phpdoc(string|array $summary = null, string|array $description = null, array $tags = null): static
     {
         if ($summary === null) {
             $summary = [];
