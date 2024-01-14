@@ -2,7 +2,6 @@
 
 namespace CodeStencil\Laravel;
 
-use CodeStencil\Stencil;
 use Illuminate\Console\Events\CommandFinished;
 use Illuminate\Console\Events\CommandStarting;
 use Illuminate\Support\Facades\App;
@@ -15,6 +14,8 @@ use SplFileInfo;
 
 class LaravelCodeStencilServiceProvider extends ServiceProvider
 {
+    use RegistersOverrideStubLocationMacro;
+
     /**
      * Register services.
      */
@@ -63,14 +64,7 @@ class LaravelCodeStencilServiceProvider extends ServiceProvider
             });
         }
 
-        Stencil::macro('overrideStubLocation', function(string $path) {
-            $newPath = $this->substituteVariables($path);
-            $newPath = $this->applyFunctions($newPath);
-
-            $this->variable('overrideStubLocation', $newPath);
-
-            return $this;
-        });
+        $this->registerOverrideStubLocationMacro();
     }
 
     private function getFiles(): array
