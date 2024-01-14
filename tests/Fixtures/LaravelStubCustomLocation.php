@@ -10,4 +10,5 @@ return Stencil::make()
     ->curlyStatement('class i_name extends Model', fn(Stencil $s) => $s
         ->line('use HasFactory;')
     )
+    ->disableFormat()
     ->overrideStubLocation(__DIR__ . DIRECTORY_SEPARATOR . 'Output.php');

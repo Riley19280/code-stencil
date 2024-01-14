@@ -9,4 +9,5 @@ return Stencil::make()
     ->use('Illuminate\Database\Eloquent\Model')
     ->curlyStatement('class i_name extends Model', fn(Stencil $s) => $s
         ->line('use HasFactory;')
-    );
+    )
+    ->disableFormat();
