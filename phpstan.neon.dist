@@ -5,3 +5,5 @@ parameters:
         - src
     tmpDir: build/phpstan
     checkMissingIterableValueType: false
+    excludePaths:
+        - src/Laravel/LaravelCodeStencilServiceProvider.php

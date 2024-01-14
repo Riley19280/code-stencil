@@ -124,7 +124,15 @@ return Stencil::make()
     ->use('Illuminate\Database\Eloquent\Model')
     ->curlyStatement('class i_name extends Model', fn(Stencil $s) => $s
         ->line('use HasFactory;')
-    );
+    )
+    ->overrideStubLocation(base_path('Domain/Other/Path/i_name.php'));
 ```
+
+### Changing the stub output location
+
+In larger projects, you may not be using the default locations where Laravel generates the file. If you would like to change this,
+you can call the `overrideStubLocation` method on the Stencil, and provide a custom location where you would like the stub file to be written to.
+Note that this method is implemented via a macro, and code completion will not be available for it.
+
 
 If you have a formatter installed, such as Pint, PHP CS Fixer, or StyleCI, your stencil will be formatted as well!

@@ -302,6 +302,10 @@ class Stencil
             return;
         }
 
+        if (!$this->formattingEnabled) {
+            return;
+        }
+
         $this->getStencilFormatter()($path);
     }
 

@@ -14,6 +14,8 @@ use SplFileInfo;
 
 class LaravelCodeStencilServiceProvider extends ServiceProvider
 {
+    use RegistersOverrideStubLocationMacro;
+
     /**
      * Register services.
      */
@@ -61,6 +63,8 @@ class LaravelCodeStencilServiceProvider extends ServiceProvider
                 App::forgetInstance('command-file-list');
             });
         }
+
+        $this->registerOverrideStubLocationMacro();
     }
 
     private function getFiles(): array
