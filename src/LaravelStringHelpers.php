@@ -24,7 +24,7 @@ trait LaravelStringHelpers
 
         if ($this->isLaravelEnvironment()) {
             foreach ($this->getLaravelStringMethods() as $method) {
-                $this->function($method, fn(...$args) => $method(...$args));
+                $this->function($method, fn(...$args) => \Illuminate\Support\Str::$method(...$args));
             }
         }
     }
