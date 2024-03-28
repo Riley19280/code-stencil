@@ -23,7 +23,7 @@ Stencil::make()
 ->line('World!')
 ->dryRun()
 ->save('/my/path/file.txt')
-// Output file will not be created
+// Output file will not be created 
 ```
 
 ---
